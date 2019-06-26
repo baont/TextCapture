@@ -28,18 +28,34 @@ namespace TextCapture
 			InitializeContext();
 		}
 
+        private SettingsForm settingsForm;
         private void ContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = false;
             notifyIcon.ContextMenuStrip.Items.Clear();
             var settingButton = new ToolStripMenuItem("Settings");
+            settingButton.Click += settings_Clicked;
             notifyIcon.ContextMenuStrip.Items.Add(settingButton);
             var exitButton = new ToolStripMenuItem("Exit");
             exitButton.Click += exitItem_Click;
             notifyIcon.ContextMenuStrip.Items.Add(exitButton);
         }
 
-        # region the child forms
+        private void settings_Clicked(object sender, EventArgs e)
+        {
+            if (settingsForm == null)
+            {
+                settingsForm = new SettingsForm(new Settings());
+                settingsForm.Closed += settingsFormClosed; // avoid reshowing a disposed form
+                settingsForm.Show();
+            }
+            else { settingsForm.Activate(); }
+        }
+
+        // null out the forms so we know to create a new one.
+        private void settingsFormClosed(object sender, EventArgs e) { settingsForm = null; }
+
+        #region the child forms
 
         // From http://stackoverflow.com/questions/2208690/invoke-notifyicons-context-menu
         private void notifyIcon_MouseUp(object sender, MouseEventArgs e)
@@ -50,7 +66,6 @@ namespace TextCapture
                 mi.Invoke(notifyIcon, null);
             }
         }
-
 
         # endregion the child forms
 
