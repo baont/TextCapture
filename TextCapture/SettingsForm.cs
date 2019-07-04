@@ -18,16 +18,13 @@ namespace TextCapture
             InitializeComponent();
             this.settings = settings;
             this.okButton.Click += OkButton_Click;
-            for (char ch = 'A'; ch <= 'Z'; ch++)
-            {
-                this.letterCombo.Items.Add(ch);
-            }
+            
             this.Shown += SettingsForm_Shown;
         }
 
         private void SettingsForm_Shown(object sender, EventArgs e)
         {
-            this.letterCombo.SelectedItem = settings.Hotkey;
+            this.LettertextBox.Text = settings.Hotkey.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,7 +34,7 @@ namespace TextCapture
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            settings.Hotkey = (char)letterCombo.SelectedItem;
+            settings.Hotkey = (char)this.LettertextBox.Text[0];
             Close();
         }
     }

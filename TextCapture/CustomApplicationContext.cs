@@ -47,6 +47,8 @@ namespace TextCapture
             {
                 settingsForm = new SettingsForm(new Settings());
                 settingsForm.Closed += settingsFormClosed; // avoid reshowing a disposed form
+                settingsForm.StartPosition = FormStartPosition.Manual;
+                settingsForm.Location = new Point(10, 10);
                 settingsForm.Show();
             }
             else { settingsForm.Activate(); }
