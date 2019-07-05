@@ -59,7 +59,9 @@ namespace TextCapture
         }
 
         // null out the forms so we know to create a new one.
-        private void settingsFormClosed(object sender, EventArgs e) { settingsForm = null; }
+        private void settingsFormClosed(object sender, EventArgs e) {
+            settingsForm = null;
+        }
 
         #region the child forms
 

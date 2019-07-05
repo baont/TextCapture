@@ -18,24 +18,18 @@ namespace TextCapture
             InitializeComponent();
             this.settings = settings;
             this.okButton.Click += OkButton_Click;
-            
-            this.Shown += SettingsForm_Shown;
-        }
-
-        private void SettingsForm_Shown(object sender, EventArgs e)
-        {
             this.LettertextBox.Text = settings.Hotkey.ToString();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
+            if (this.LettertextBox.Text == "")
+            {
+                this.LettertextBox.Text = "C";
+            }
             settings.Hotkey = (char)this.LettertextBox.Text[0];
             Close();
         }
+
     }
 }
