@@ -48,7 +48,11 @@ namespace TextCapture
                 settingsForm = new SettingsForm(new Settings());
                 settingsForm.Closed += settingsFormClosed; // avoid reshowing a disposed form
                 settingsForm.StartPosition = FormStartPosition.Manual;
-                settingsForm.Location = new Point(10, 10);
+
+                Rectangle workAreaRectangle = new Rectangle();
+                workAreaRectangle = Screen.GetWorkingArea(workAreaRectangle);
+                settingsForm.Location = new Point(workAreaRectangle.Width - settingsForm.Width - 10, workAreaRectangle.Height - settingsForm.Height - 10);
+                settingsForm.ShowInTaskbar = false;
                 settingsForm.Show();
             }
             else { settingsForm.Activate(); }
