@@ -22,5 +22,17 @@ namespace TextCapture.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C")]
+        public char hotkey {
+            get {
+                return ((char)(this["hotkey"]));
+            }
+            set {
+                this["hotkey"] = value;
+            }
+        }
     }
 }

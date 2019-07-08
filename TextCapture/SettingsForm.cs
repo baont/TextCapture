@@ -12,13 +12,11 @@ namespace TextCapture
 {
     public partial class SettingsForm : Form
     {
-        public Settings settings { get; set; }
-        public SettingsForm(Settings settings)
+        public SettingsForm()
         {
             InitializeComponent();
-            this.settings = settings;
             this.okButton.Click += OkButton_Click;
-            this.LettertextBox.Text = settings.Hotkey.ToString();
+            this.LettertextBox.Text = Properties.Settings.Default[CustomApplicationContext.HOT_KEY].ToString();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -27,7 +25,8 @@ namespace TextCapture
             {
                 this.LettertextBox.Text = "C";
             }
-            settings.Hotkey = (char)this.LettertextBox.Text[0];
+            Properties.Settings.Default[CustomApplicationContext.HOT_KEY] = (char)this.LettertextBox.Text.ToUpper()[0];
+            Properties.Settings.Default.Save();
             Close();
         }
 

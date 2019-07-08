@@ -19,6 +19,7 @@ namespace TextCapture
         // Icon graphic from http://prothemedesign.com/circular-icons/
         private static readonly string IconFileName = "icon.ico";
         private static readonly string DefaultTooltip = "Extract text from a screen region";
+        public static readonly string HOT_KEY = "hotkey";
 
         /// <summary>
 		/// This class should be created and passed into Application.Run( ... )
@@ -45,7 +46,7 @@ namespace TextCapture
         {
             if (settingsForm == null)
             {
-                settingsForm = new SettingsForm(new Settings());
+                settingsForm = new SettingsForm();
                 settingsForm.Closed += settingsFormClosed; // avoid reshowing a disposed form
                 settingsForm.StartPosition = FormStartPosition.Manual;
 
