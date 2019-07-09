@@ -2,7 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
-
+using NonInvasiveKeyboardHookLibrary;
+using System.Diagnostics;
 
 namespace TextCapture
 {
@@ -27,7 +28,18 @@ namespace TextCapture
 		public CustomApplicationContext() 
 		{
 			InitializeContext();
-		}
+            // set the keyhooker
+            var keyboardHookManager = new KeyboardHookManager();
+            keyboardHookManager.Start();
+            keyboardHookManager.RegisterHotkey(0x60, () =>
+            {
+                Debug.WriteLine("NumPad0 detected");
+            });
+            keyboardHookManager.RegisterHotkey(NonInvasiveKeyboardHookLibrary.ModifierKeys.Control | NonInvasiveKeyboardHookLibrary.ModifierKeys.Alt, 0x60, () =>
+            {
+                Debug.WriteLine("Ctrl+Alt+NumPad0 detected");
+            });
+        }
 
         private SettingsForm settingsForm;
         private void ContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)

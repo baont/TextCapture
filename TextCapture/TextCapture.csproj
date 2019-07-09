@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomApplicationContext.cs" />
+    <Compile Include="NonInvasiveKeyboardHookLibrary\KeybindStruct.cs" />
+    <Compile Include="NonInvasiveKeyboardHookLibrary\KeyboardHookManager.cs" />
+    <Compile Include="NonInvasiveKeyboardHookLibrary\ModifierKeys.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
